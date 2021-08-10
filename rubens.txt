@@ -38,3 +38,10 @@ def find_seq(iden = '', org = ''):
                 secuencia = re.sub('[*]', '', secuencia)
                 return secuencia
                 break
+
+
+"""
+IUPAC nucleotide code
+"""
+code = {'A':'A', 'C':'C', 'T':'T', 'G':'G', 'R':'[AG]', 'Y': '[CT]', 'S': '[GC]', 'W': '[AT]', 'K':'[GT]',
+        'M': '[AC]', 'B': '[CGT]', 'D': '[AGT]', 'H': '[ACT]', 'V': '[ACG]', 'N': '[ACGT]'}
