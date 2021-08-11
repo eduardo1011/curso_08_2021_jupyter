@@ -45,3 +45,9 @@ IUPAC nucleotide code
 """
 code = {'A':'A', 'C':'C', 'T':'T', 'G':'G', 'R':'[AG]', 'Y': '[CT]', 'S': '[GC]', 'W': '[AT]', 'K':'[GT]',
         'M': '[AC]', 'B': '[CGT]', 'D': '[AGT]', 'H': '[ACT]', 'V': '[ACG]', 'N': '[ACGT]'}
+        
+        
+comando9 = 'start cmd /k cd ../salidas/ ^&^& python ../binarios/phobius.py --email '+email+' --sequence ../DB/p53_humano.faa'
+cl = os.system(comando9)
+
+
