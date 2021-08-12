@@ -51,3 +51,57 @@ comando9 = 'start cmd /k cd ../salidas/ ^&^& python ../binarios/phobius.py --ema
 cl = os.system(comando9)
 
 
+
+
+fig,ax = plt.subplots(figsize=(10, 20))
+
+
+for i, j, k in zip(range(0, len(orthologs)),
+                   orthologs.qlen.tolist(),
+               orthologs.Phospho.tolist()):
+    ax.add_patch(patches.Rectangle((0,i),j, 0.5,alpha=0.2,
+                                   linewidth=0,color= 'grey'))
+    ax.plot(0,[i + 0.25], c= 'black',  marker="|",  markersize=7, alpha=1)
+    ax.plot(j,[i + 0.25], c= 'black',  marker="|",  markersize=7, alpha=1)
+    
+    ax.text(-5, i, k+' ', size = 8, weight='bold', ha = 'right')
+    ax.text(j, i, '  '+Peni_Genes_Map[k], size = 9, ha = 'left', style='italic')
+    
+   
+    for l in PENI_dict_dom_Posiciones[k].Domain.drop_duplicates():
+        df = PENI_dict_dom_Posiciones[k][PENI_dict_dom_Posiciones[k].Domain == l]
+        for z, y, a in zip(df.Start.tolist(), df.End.tolist(), df.Domain.tolist()):
+            if a in ['Disordered', 'Transmembrane', 'Coiled-coil']:
+                ax.add_patch(patches.FancyBboxPatch((z,i+0.05),y-z,0.4,
+                                                boxstyle=patches.BoxStyle("round", pad=0.07),
+                                          linewidth=0,color= DOM_COLOS_REF[a], alpha = 0.6))
+            else:
+                ax.add_patch(patches.FancyBboxPatch((z,i+0.05),y-z,0.4,
+                                                boxstyle=patches.BoxStyle("round4", pad=0.2),
+                                          linewidth=0,color= DOM_COLOS_REF[a], alpha = 0.6))
+    for q in fosfositios[k].Pos_in_prot.tolist():
+        pos = int(re.sub('S|T|Y', '', q))
+        if 'S' in q:
+            ax.plot(pos,[i + 0.5], c= 'red',  marker="v",  markersize=3, alpha=1, linewidth=0)
+        if 'T' in q:
+            ax.plot(pos,[i], c= 'blue',  marker="^",  markersize=3, alpha=1, linewidth=0)
+        if 'Y' in q:
+            ax.plot(pos,[i+ 0.25], c= 'black',  marker="o",  markersize=2.5, alpha=1, linewidth=0)
+#
+ax.scatter(1700, 30, s = 500, c = 'red', marker = "v")
+ax.text(1840, 30, 'S', fontsize = 30, color = 'black', ha = 'center', va = 'center', weight = 'bold')
+ax.scatter(1700, 27, s = 500, c = 'blue', marker = "^")
+ax.text(1840, 27, 'T', fontsize = 30, color = 'black', ha = 'center', va = 'center', weight = 'bold')
+ax.scatter(1700, 24, s = 500, c = 'black', marker = "o")
+ax.text(1840, 24, 'Y', fontsize = 30, color = 'black', ha = 'center', va = 'center', weight = 'bold')
+
+ax.spines['right'].set_visible(False)
+ax.spines['top'].set_visible(False)
+ax.spines['left'].set_visible(False)
+ax.spines['bottom'].set_position(('data',-0.6))
+plt.yticks([])  
+
+#plt.savefig('fastas/Domains_Plot_Phosphoproteome.png',dpi = 900, bbox_inches='tight')
+
+
+plt.show()
