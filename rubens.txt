@@ -105,3 +105,10 @@ plt.yticks([])
 
 
 plt.show()
+
+
+
+# función para obtener el reverso complementario
+complement = {'A':'T', 'C':'G', 'G':'C', 'T':'A', 'N':'N'}
+def fid_rev_com(seq = ''):
+    return ''.join([complement[i] for i in reversed(seq)])
