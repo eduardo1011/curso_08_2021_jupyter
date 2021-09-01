@@ -112,3 +112,19 @@ plt.show()
 complement = {'A':'T', 'C':'G', 'G':'C', 'T':'A', 'N':'N'}
 def fid_rev_com(seq = ''):
     return ''.join([complement[i] for i in reversed(seq)])
+
+
+{'Hypocreales': '#8dd3c7',
+ 'Onygenales': '#bebada',
+ 'Erysiphales': '#fb8072',
+ 'Chaetothyriales': '#bebada',
+ 'Eurotiales': '#bebada',
+ 'Ophiostomatales': '#8dd3c7',
+ 'Diaporthales': '#8dd3c7',
+ 'Helotiales': '#fb8072',
+ 'Mycosphaerellales': '#80b1d3',
+ 'Glomerellales': '#8dd3c7',
+ 'Sordariales': '#8dd3c7',
+ 'Pleosporales': '#80b1d3',
+ 'Magnaporthales': '#8dd3c7',
+ 'Xylariales': '#8dd3c7'}
